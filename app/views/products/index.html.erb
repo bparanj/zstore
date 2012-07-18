@@ -1,24 +1,26 @@
-<h1>Products</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Products 2</h1>
 
 <% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.price %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+	<div class="product">
+	  <h3>
+	    <%= link_to product.name, product %>
+	    <%= number_to_currency(product.price) %>
+	  </h3>
+	  Category: <%= product.category.name %>
+	  <%= form_for product.cart_items.build do |f| %>
+	    <%= f.hidden_field :product_id %>
+	    <%= f.submit "Add to Cart" %>
+	  <% end %>
+	</div>
+
+
+    <p><%= link_to 'Show', product %></p>
+    <p><%= link_to 'Edit', edit_product_path(product) %></p>
+    <p><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
   </tr>
+ 
 <% end %>
-</table>
 
 <br />
 
