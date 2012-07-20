@@ -1,1 +1,5 @@
-1. Version 1 : Railscast episode 115
+1. Version 1 : Railscast episode 115. Product and Category.
+2. Version 2 : Railscast episode 131. Cart, CartItem models added. Add to Cart with continue shopping feature.
+3. Railscast episode 141 - line_item is used instead of cart_line_item, it also has an additional unit_price field.
+   Receipt or Invoice class should have purchased_at field instead of cart.
+   Checkout button uses Name value pair post to Paypal using Website Standard.
