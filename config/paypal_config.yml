@@ -1,0 +1,11 @@
+development:
+    paypal_email: sell_1342421142_biz@gmail.com
+    paypal_url: https://www.sandbox.paypal.com/cgi-bin/webscr
+
+test:
+    paypal_email: test@example.com
+    paypal_url: testpaypalurl
+
+production:
+    paypal_email: seller@example.com
+    paypal_url: https://www.paypal.com/cgi-bin/webscr

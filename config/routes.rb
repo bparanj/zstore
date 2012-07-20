@@ -1,8 +1,6 @@
 Zstore::Application.routes.draw do
-  get "carts/show"
 
-  get "cart_items/create"
-
+  resources :payment_notifications
   resources :categories
   resources :products
   resources :cart_items
