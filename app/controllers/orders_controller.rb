@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
+  # http://localhost:3010/orders/new?token=EC-6JK45894P8656060H&PayerID=R6TPVW2ZMCR9Q
   def new
-    @order = Order.new(:express_token => params[:token])
-  end
-  
-  def create
-    @order = current_cart.build_order(params[:order])
+    # The following call actually populates the order fields by making the GetExpressCheckoutDetails Paypal API call
+    order = Order.new(:express_token => params[:token])
+    @order = current_cart.build_order(:express_token => params[:token], 
+                                      :express_payer_id => params[:PayerID],
+                                      :first_name => order.first_name,
+                                      :last_name => order.last_name)    
     @order.ip_address = request.remote_ip
     
     if @order.save
@@ -16,14 +18,19 @@ class OrdersController < ApplicationController
     else
       render action: 'new'
     end
+    
   end
   
+  # Step 1 : Setup Express Checkout
   def express
     response = ZephoPaypalExpress.setup_purchase(current_cart.build_order.price_in_cents,
       ip: request.remote_ip,
       return_url: new_order_url,
       cancel_return_url: products_url)
-
+      
     redirect_to ZephoPaypalExpress.redirect_url_for(response.token)
   end
 end
+
+# https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-7PH43906MW691851Y
+# 342401932

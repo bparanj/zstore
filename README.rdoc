@@ -12,7 +12,7 @@
 9. Delete	 
 	  card_type: 
 	  card_expires_on: 
-	from orders table.
+	  from orders table.
 10. payment_service_for can be used in the cart show page to make the purchase. 
 
     Add :
@@ -26,6 +26,8 @@
 1. By default, a PayPal account is not eligible to use Website Payments Pro. You must submit an online application and have your application approved by PayPal. 
 2. Does Express Checkout require granting Third-Party API permission?
 
+
+342401932
 
 
 	Express Checkout

@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   def price_in_cents
     (cart.total_price*100).round
   end
-
+# TODO : Get rid of this confusing implementation...
   def express_token=(token)
     self[:express_token] = token
     return if token.blank?
