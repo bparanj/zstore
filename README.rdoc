@@ -4,16 +4,20 @@
    Receipt or Invoice class should have purchased_at field instead of cart.
    Checkout button uses Name value pair post to Paypal using Website Standard.
 4. Railscast episode 146 upgraded to Rails 3.2
-5. line_item.product.price should be item.unit_price
-6. Change cart_items to line_items
-7. Change CartItemsController to LineItemsController
-8. Is invoice_id used to tie IPN with Express Checkout payment? Look at SQLite Manager
-   records for order and order_transaction.
-9. Delete	 
+
+
+1. Is invoice_id used to tie IPN with Express Checkout payment?
+2. By default, a PayPal account is not eligible to use Website Payments Pro. You must submit an online application and have your application approved by PayPal. 
+3. Does Express Checkout require granting Third-Party API permission?
+
+1. line_item.product.price should be item.unit_price
+2. Change cart_items to line_items
+3. Change CartItemsController to LineItemsController
+4. Delete	 
 	  card_type: 
 	  card_expires_on: 
 	  from orders table.
-10. payment_service_for can be used in the cart show page to make the purchase. 
+5. payment_service_for can be used in the cart show page to make the purchase. 
 
     Add :
 		require 'money'
@@ -22,10 +26,6 @@
 		ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
 		
 		to environment.rb
-
-1. By default, a PayPal account is not eligible to use Website Payments Pro. You must submit an online application and have your application approved by PayPal. 
-2. Does Express Checkout require granting Third-Party API permission?
-
 
 342401932
 
