@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-# TODO : This is LineItemsController
+
   def create
     current_cart.cart_items.create!(params[:cart_item])
     session[:last_product_page] = request.headers["Referer"] || products_url

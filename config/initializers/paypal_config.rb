@@ -7,9 +7,7 @@ options = {
 }
 
 if Rails.env.test?
-  ZephoPaypalGateway = ActiveMerchant::Billing::BogusGateway.new
   ZephoPaypalExpress = ActiveMerchant::Billing::BogusGateway.new
 else
-  ZephoPaypalGateway = ActiveMerchant::Billing::PaypalGateway.new(options)  
   ZephoPaypalExpress = ActiveMerchant::Billing::PaypalExpressGateway.new(options)  
 end
