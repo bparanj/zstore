@@ -1,4 +1,7 @@
 Zstore::Application.routes.draw do
+  
+  resources :orders, :only => [:new, :create] 
+  get '/express' => 'orders#express', as: :express
 
   resources :payment_notifications
   resources :categories

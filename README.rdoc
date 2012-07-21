@@ -3,3 +3,27 @@
 3. Railscast episode 141 - line_item is used instead of cart_line_item, it also has an additional unit_price field.
    Receipt or Invoice class should have purchased_at field instead of cart.
    Checkout button uses Name value pair post to Paypal using Website Standard.
+4.. By default, a PayPal account is not eligible to use Website Payments Pro. You must submit an online application and have your application approved by PayPal. 
+5. Does Express Checkout require granting Third-Party API permission?
+
+
+	Express Checkout
+
+	• SetExpressCheckout (required): Initiates an Express Checkout transaction
+
+	• GetExpressCheckoutDetails (optional): Retrieves buyer details about an Express Checkout transaction
+
+	• DoExpressCheckoutPayment (required): Completes an Express Checkout transaction
+
+	SetExpressCheckout
+
+	The first API call, SetExpressCheckout, is made as soon as buyers click to indicate that they wish to pay with PayPal. PayPal’s response to a SetExpressCheckout contains a single value, a token, which you retain and include in the other two Express Checkout API calls to indicate
+	that they belong to the same checkout flow. When you get the token back in the API response, you redirect the customer’s browser to PayPal so that the buyer can log in and validate his shipping and financial information.
+
+	The request for SetExpressCheckout has three required parameters that you include with the API call:
+
+	• The total amount of the order
+	• The return URL that PayPal will return buyers to after they log in to PayPal and validate their shipping and financial information
+	• The cancel URL that PayPal will return buyers to if they decide to cancel the transaction after being redirected to the PayPal website
+
+	The URL that you redirect the buyer’s browser to in order to authenticate him to PayPal is https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-0W8920957N684880R. This is just an example token value; you would obviously replace this with the token value returned to you in the response to SetExpressCheckout.

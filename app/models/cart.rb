@@ -1,6 +1,7 @@
 class Cart < ActiveRecord::Base
   has_many :cart_items
   has_many :products, :through => :cart_items
+  has_one :order
   
   def total_price
     cart_items.to_a.sum(&:full_price)
@@ -24,7 +25,7 @@ class Cart < ActiveRecord::Base
         "quantity_#{index+1}" => item.quantity
       })
     end
-    name_value_pairs = values.map{|k,v| "#{k}=#{v}"}.join("&")
-    PAYPAL_CONFIG["paypal_url"] + '?' + name_value_pairs
+
+    PAYPAL_CONFIG["paypal_url"] + '?' + values.to_query
   end
 end
