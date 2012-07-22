@@ -1,12 +1,8 @@
 class OrdersController < ApplicationController
   # http://localhost:3010/orders/new?token=EC-6JK45894P8656060H&PayerID=R6TPVW2ZMCR9Q
   def new
-    # The following call actually populates the order fields by making the GetExpressCheckoutDetails Paypal API call
-    order = Order.new(:express_token => params[:token])
     @order = current_cart.build_order(:express_token => params[:token], 
-                                      :express_payer_id => params[:PayerID],
-                                      :first_name => order.first_name,
-                                      :last_name => order.last_name)    
+                                      :express_payer_id => params[:PayerID])    
     @order.ip_address = request.remote_ip
     
     if @order.save
@@ -34,3 +30,5 @@ end
 
 # https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-7PH43906MW691851Y
 # 342401932
+# The following call actually populates the order fields by making the GetExpressCheckoutDetails Paypal API call
+# order = Order.new(:express_token => params[:token])
