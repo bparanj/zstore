@@ -9,14 +9,16 @@ namespace :paypal do
     puts "There are #{orders.size} orders to process"
 
     orders.each do |order|
-      puts "Processing order : #{order.id}"
-      details = ZephoPaypalExpress.details_for(order.express_token)
-      # puts "Details : #{details.params}"
-      order.express_payer_id = details.payer_id
-      order.first_name = details.params["first_name"]
-      order.last_name = details.params["last_name"]
-      order.buyer_email = details.params['PayerInfo']["Payer"]    
-      order.save
+      if order.buyer_email.nil?
+        puts "Processing order : #{order.id}"
+        details = ZephoPaypalExpress.details_for(order.express_token)
+        # puts "Details : #{details.params}"
+        order.express_payer_id = details.payer_id
+        order.first_name = details.params["first_name"]
+        order.last_name = details.params["last_name"]
+        order.buyer_email = details.params['PayerInfo']["Payer"]    
+        order.save        
+      end
     end
 
   end  
