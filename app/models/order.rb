@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   def price_in_cents
     (cart.total_price*100).round
   end
-    
+
   private
 
   def process_purchase
@@ -33,15 +33,3 @@ class Order < ActiveRecord::Base
 end
 
 # TODO : Get rid of this SRP violating implementation...
-# If first_name and last_name is required then populate it using a rake task. Token is valid for 3 hours.
-  # def express_token=(token)
-  #   self[:express_token] = token
-  #   return if token.blank?
-  #   
-  #   if new_record?
-  #     details = ZephoPaypalExpress.details_for(token)
-  #     self.express_payer_id = details.payer_id
-  #     self.first_name = details.params["first_name"]
-  #     self.last_name = details.params["last_name"]
-  #   end
-  # end

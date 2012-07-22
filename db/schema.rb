@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721045342) do
+ActiveRecord::Schema.define(:version => 20120722011119) do
 
   create_table "cart_items", :force => true do |t|
     t.integer  "product_id"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120721045342) do
     t.datetime "updated_at",       :null => false
     t.string   "express_token"
     t.string   "express_payer_id"
+    t.text     "buyer_email"
   end
 
   create_table "payment_notifications", :force => true do |t|
